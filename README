@@ -2,7 +2,7 @@ NAME
 	Bluepay::Bluepay20Post
 
 VERSION
-	Version: 0.01
+	Version: 0.10
 	April 2008
 
 SYNOPSIS
@@ -10,8 +10,8 @@ SYNOPSIS
 
 DESCRIPTION
 	Bluepay::Bluepay20Post is a Perl based implementation for interaction with the 
-	Bluepay 2.0 post interface.  Bluepay20Post accepts the parameters needed for the 
-	Bluepay20Post and sends the post request to Bluepay via HTTPS.  Bluepay20Post 
+	Bluepay 2.0 Post interface.  Bluepay20Post accepts the parameters needed for the 
+	Bluepay20Post and sends the Post request to Bluepay via HTTPS.  Bluepay20Post 
 	has been developed on Windows XP, but should work on any OS where Perl is installed.
 
 RUNNING Bluepay::Bluepay20Post
@@ -33,7 +33,7 @@ RUNNING Bluepay::Bluepay20Post
 	
 	# Post --> Results contains the name value pair string of the response
 	#  In this format: TRANS_ID=&STATUS=&AVS=&CVV2=&MESSAGE=&REBID=
-	my $results = $bp20Obj->post();
+	my $results = $bp20Obj->Post();
 
 	# Can also retrieve the results directly from the object
 	print $bp20Obj->{TRANS_ID} . "\n";
@@ -48,7 +48,7 @@ RUNNING Bluepay::Bluepay20Post
 METHODS
   new
 	Creates a new instance of a Bluepay::Bluepay20Post object
-  post
+  Post
 	Posts the data to the Bluepay::Bluepay20Post interface
 
 MODULES
@@ -79,8 +79,8 @@ COPYRIGHTS
 
 SUPPORT/WARRANTY
 	Bluepay::Bluepay20Post is free Open Source software.  This code is Free.  You may use it, modify it, 
-	redistribute it, post it on the bathroom wall, or whatever.  If you do make modifications that are 
+	redistribute it, Post it on the bathroom wall, or whatever.  If you do make modifications that are 
 	useful, Bluepay would love it if you donated them back to us!
 
 KNOWN BUGS
-	This is version 0.01 of Bluepay::Bluepay20Post.  There are currently no known bugs.
+	This is version 0.10 of Bluepay::Bluepay20Post.  There are currently no known bugs.

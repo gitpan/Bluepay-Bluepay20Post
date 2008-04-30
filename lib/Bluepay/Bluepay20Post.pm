@@ -1,6 +1,6 @@
 package Bluepay::Bluepay20Post;
 
-$VERSION   = '0.01';
+$VERSION   = '0.10';
 
 use strict;
 use warnings;
@@ -11,8 +11,8 @@ use LWP::UserAgent;
 use URI::Escape;
 
 
-## Bluepay20post default fields ##
-my $URL = 'https://secure.bluepay.com/interfaces/bp20post';
+## Bluepay20Post default fields ##
+my $URL = 'https://secure.bluepay.com/interfaces/bp20Post';
 my $MODE = "TEST";
 
 
@@ -22,7 +22,7 @@ Bluepay::Bluepay20Post
 
 =head1 VERSION
 
-Version: 0.01
+Version: 0.10
 April 2008
 
 =head1 SYNOPSIS
@@ -32,8 +32,8 @@ Bluepay::Bluepay20Post - The BluePay 2.0 Post interface
 =head1 DESCRIPTION
 
 Bluepay::Bluepay20Post is a Perl based implementation for interaction with the 
-Bluepay 2.0 post interface.  Bluepay20Post accepts the parameters needed for the 
-Bluepay20Post and sends the post request to Bluepay via HTTPS.  Bluepay20Post 
+Bluepay 2.0 Post interface.  Bluepay20Post accepts the parameters needed for the 
+Bluepay20Post and sends the Post request to Bluepay via HTTPS.  Bluepay20Post 
 has been developed on Windows XP, but should work on any OS where Perl is installed.
 
 =head1 RUNNING Bluepay::Bluepay20Post
@@ -56,7 +56,7 @@ has been developed on Windows XP, but should work on any OS where Perl is instal
 	
 	# Post --> Results contains the name value pair string of the response
 	#  In this format: TRANS_ID=&STATUS=&AVS=&CVV2=&MESSAGE=&REBID=
-	my $results = $bp20Obj->post();
+	my $results = $bp20Obj->Post();
 
 	# Can also retrieve the results directly from the object
 	print $bp20Obj->{TRANS_ID} . "\n";
@@ -91,13 +91,13 @@ sub new  {
     return $self;
 }
 
-=head2 post
+=head2 Post
 
 Posts the data to the Bluepay::Bluepay20Post interface
 
 =cut
 
-sub post {
+sub Post {
     my $self = shift; 
     
     ## Create TAMPER_PROOF_SEAL:
@@ -110,71 +110,17 @@ sub post {
 	my $TAMPER_PROOF_SEAL = md5_hex $TAMPER_PROOF_DATA;;
   
     # Create request (encode)
-    my $request = $self->{URL} . "\?ACCOUNT_ID=" . uri_escape($self->{ACCOUNT_ID} || '') . 
-				"&USER_ID="           . uri_escape($self->{USER_ID} || '') .
-				"&TAMPER_PROOF_SEAL=" . uri_escape($TAMPER_PROOF_SEAL || '') .
-				"&TPS_DEF="           . uri_escape($self->{TPS_DEF} || '') .
-				"&TRANS_TYPE="        . uri_escape($self->{TRANS_TYPE} || '') .
-				"&PAYMENT_TYPE="      . uri_escape($self->{PAYMENT_TYPE} || '') .
-				"&MODE="              . uri_escape($self->{MODE} || '') .
-				"&MASTER_ID="         . uri_escape($self->{MASTER_ID} || '') .
-
-				"&PAYMENT_ACCOUNT="   . uri_escape($self->{PAYMENT_ACCOUNT} || '') .
-				"&CARD_CVV2="         . uri_escape($self->{CARD_CVV2} || '') .
-				"&CARD_EXPIRE="       . uri_escape($self->{CARD_EXPIRE} || '') .
-				"&DOC_TYPE="          . uri_escape($self->{DOC_TYPE} || '') .
-
-				"&SWIPE="             . uri_escape($self->{SWIPE} || '') .
-				"&TRACK2="            . uri_escape($self->{TRACK2} || '') .
-				"&IS_CORPORATE="      . uri_escape($self->{IS_CORPORATE} || '') .
-				"&COMPANY_NAME="      . uri_escape($self->{COMPANY_NAME} || '') .
-
-				"&TRANSACTION_TYPE="  . uri_escape($self->{TRANSACTION_TYPE} || '') .
-				"&AMOUNT="            . uri_escape($self->{AMOUNT} || '') .
-				"&NAME1="             . uri_escape($self->{NAME1} || '') .
-				"&NAME2="             . uri_escape($self->{NAME2} || '') .
-				"&ADDR1="             . uri_escape($self->{ADDR1} || '') .
-				"&ADDR2="             . uri_escape($self->{ADDR2} || '') .
-
-				"&CITY="              . uri_escape($self->{CITY} || '') .
-				"&STATE="             . uri_escape($self->{STATE} || '') .
-				"&ZIP="               . uri_escape($self->{ZIP} || '') .
-				"&COUNTRY="           . uri_escape($self->{COUNTRY} || '') .
-				"&EMAIL="             . uri_escape($self->{EMAIL} || '') .
-				"&PHONE="             . uri_escape($self->{PHONE} || '') .
-				"&MEMO="              . uri_escape($self->{MEMO} || '') .
-				"&CUSTOM_ID="         . uri_escape($self->{CUSTOM_ID} || '') .
-				"&CUSTOM_ID2="        . uri_escape($self->{CUSTOM_ID2} || '') .
-
-				"&ORDER_ID="          . uri_escape($self->{ORDER_ID} || '') .
-				"&INVOICE_ID="        . uri_escape($self->{INVOICE_ID} || '') .
-				"&AMOUNT_TIP="        . uri_escape($self->{AMOUNT_TIP} || '') .
-				"&AMOUNT_TAX="        . uri_escape($self->{AMOUNT_TAX} || '') .
-				"&AMOUNT_FOOD="       . uri_escape($self->{AMOUNT_FOOD} || '') .
-				"&AMOUNT_MISC="       . uri_escape($self->{AMOUNT_MISC} || '') .
-
-				"&DO_REBILL="         . uri_escape($self->{DO_REBILL} || '') .
-				"&REB_FIRST_DATE="    . uri_escape($self->{REB_FIRST_DATE} || '') .
-				"&REB_EXPR="          . uri_escape($self->{REB_EXPR} || '') .
-				"&REB_CYCLES="        . uri_escape($self->{REB_CYCLES} || '') .
-				"&REB_AMOUNT="        . uri_escape($self->{REB_AMOUNT} || '') .
-				"&SMID_ID="           . uri_escape($self->{SMID_ID} || '') .
-
-				"&PIN_BLOCK="         . uri_escape($self->{PIN_BLOCK} || '') .
-				"&AMOUNT_CASHBACK="   . uri_escape($self->{AMOUNT_CASHBACK} || '') .
-				"&AMOUNT_SURCHARGE="  . uri_escape($self->{AMOUNT_SURCHARGE} || '') .
-				"&SSN="               . uri_escape($self->{SSN} || '') .
-				"&BIRTHDATE="         . uri_escape($self->{BIRTHDATE} || '') .
-				"&CUST_ID="           . uri_escape($self->{CUST_ID} || '') .
-				"&CUST_ID_STATE="     . uri_escape($self->{CUST_ID_STATE} || '');
+    my $request = $self->{URL} . "\?TAMPER_PROOF_SEAL=" . uri_escape($TAMPER_PROOF_SEAL || ''); 
+	while ( my ($key, $value) = each(%$self) ) { 
+		if ($key eq 'SECRET_KEY') { next; }  $request .= "&$key=" . uri_escape($value || ''); 
+	}
 
     # Create Agent
     my $ua = new LWP::UserAgent;
-    #my $response = $ua->post("$request"); #OLD
+    #my $response = $ua->Post("$request"); #OLD
     my $response = $ua->get("$request");
     my $content = $response->content;
     chomp $content;
-    #print "$request\n";
     
     # Parse Response
 	# Split the name-value pairs
@@ -221,12 +167,12 @@ the modules that Bluepay::Bluepay20Post specifically references.
 =head1 SUPPORT/WARRANTY
 
 Bluepay::Bluepay20Post is free Open Source software.  This code is Free.  You may use it, modify it, 
-redistribute it, post it on the bathroom wall, or whatever.  If you do make modifications that are 
+redistribute it, Post it on the bathroom wall, or whatever.  If you do make modifications that are 
 useful, Bluepay would love it if you donated them back to us!
 
 =head1 KNOWN BUGS:
 
-This is version 0.01 of Bluepay::Bluepay20Post.  There are currently no known bugs.
+This is version 0.10 of Bluepay::Bluepay20Post.  There are currently no known bugs.
 
 =cut
 
