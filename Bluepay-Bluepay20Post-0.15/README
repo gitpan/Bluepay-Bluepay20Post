@@ -2,8 +2,8 @@ NAME
 	Bluepay::Bluepay20Post
 
 VERSION
-	Version: 0.10
-	April 2008
+	Version: 0.15
+	December 2008
 
 SYNOPSIS
 	Bluepay::Bluepay20Post - The BluePay 2.0 Post interface
@@ -40,7 +40,6 @@ RUNNING Bluepay::Bluepay20Post
 	print $bp20Obj->{STATUS} . "\n";
 	print $bp20Obj->{AVS} . "\n";
 	print $bp20Obj->{CVV2} . "\n";
-	print $bp20Obj->{AVS} . "\n";
 	print $bp20Obj->{AUTH_CODE} . "\n";
 	print $bp20Obj->{MESSAGE} . "\n";
 	print $bp20Obj->{REBID} . "\n";
@@ -56,6 +55,7 @@ MODULES
 	can run.  You can use cpan to install the modules.  They are:
 	 - Digest::MD5
 	 - LWP::UserAgent
+	 - Crypt::SSLeay
 	 - URI::Escape
 
 AUTHOR
@@ -71,6 +71,8 @@ COPYRIGHTS
 		Available at: http://search.cpan.org/~gaas/Digest-MD5-2.36/MD5.pm
 	 - The LWP::UserAgent module is Copyright (c) 1995-2008 Gisle Aas.
 		Available at: http://search.cpan.org/~gaas/libwww-perl-5.812/lib/LWP/UserAgent.pm
+	 - The Crypt::SSLeay module is Copyright (c) 2006-2007 David Landgren.
+		Available at: http://search.cpan.org/~dland/Crypt-SSLeay-0.57/SSLeay.pm
 	 - The URI::Escape module is Copyright (c) 1995-2004 Gisle Aas.
 		Available at: http://search.cpan.org/~gaas/URI-1.36/URI/Escape.pm
 				
@@ -83,4 +85,4 @@ SUPPORT/WARRANTY
 	useful, Bluepay would love it if you donated them back to us!
 
 KNOWN BUGS
-	This is version 0.10 of Bluepay::Bluepay20Post.  There are currently no known bugs.
+	This is version 0.15 of Bluepay::Bluepay20Post.  There are currently no known bugs.

@@ -6,4 +6,8 @@ Revision history for Perl extension Bluepay::Bluepay20Post.
 0.10  Tue Apr 29 2008
 	- name revision;
 	- updated hash references to future-proof module;
+
+0.15  Wed Dec 10 2008
+	- added Crypt::SSLeay in meta data
+	- update URL to post transactions
 	

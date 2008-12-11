@@ -1,6 +1,6 @@
 package Bluepay::Bluepay20Post;
 
-$VERSION   = '0.10';
+$VERSION   = '0.15';
 
 use strict;
 use warnings;
@@ -12,7 +12,7 @@ use URI::Escape;
 
 
 ## Bluepay20Post default fields ##
-my $URL = 'https://secure.bluepay.com/interfaces/bp20Post';
+my $URL = 'https://secure.bluepay.com/interfaces/bp20post';
 my $MODE = "TEST";
 
 
@@ -22,8 +22,8 @@ Bluepay::Bluepay20Post
 
 =head1 VERSION
 
-Version: 0.10
-April 2008
+Version: 0.15
+December 2008
 
 =head1 SYNOPSIS
 
@@ -63,7 +63,6 @@ has been developed on Windows XP, but should work on any OS where Perl is instal
 	print $bp20Obj->{STATUS} . "\n";
 	print $bp20Obj->{AVS} . "\n";
 	print $bp20Obj->{CVV2} . "\n";
-	print $bp20Obj->{AVS} . "\n";
 	print $bp20Obj->{AUTH_CODE} . "\n";
 	print $bp20Obj->{MESSAGE} . "\n";
 	print $bp20Obj->{REBID} . "\n";
@@ -117,7 +116,7 @@ sub Post {
 
     # Create Agent
     my $ua = new LWP::UserAgent;
-    #my $response = $ua->Post("$request"); #OLD
+    #my $response = $ua->post("$request"); #OLD
     my $response = $ua->get("$request");
     my $content = $response->content;
     chomp $content;
@@ -158,6 +157,8 @@ Module Copyrights:
 	Available at: http://search.cpan.org/~gaas/Digest-MD5-2.36/MD5.pm
  - The LWP::UserAgent module is Copyright (c) 1995-2008 Gisle Aas.
 	Available at: http://search.cpan.org/~gaas/libwww-perl-5.812/lib/LWP/UserAgent.pm
+ - The Crypt::SSLeay module is Copyright (c) 2006-2007 David Landgren.
+	Available at: http://search.cpan.org/~dland/Crypt-SSLeay-0.57/SSLeay.pm
  - The URI::Escape module is Copyright (c) 1995-2004 Gisle Aas.
 	Available at: http://search.cpan.org/~gaas/URI-1.36/URI/Escape.pm
 				
@@ -172,7 +173,7 @@ useful, Bluepay would love it if you donated them back to us!
 
 =head1 KNOWN BUGS:
 
-This is version 0.10 of Bluepay::Bluepay20Post.  There are currently no known bugs.
+This is version 0.15 of Bluepay::Bluepay20Post.  There are currently no known bugs.
 
 =cut
 

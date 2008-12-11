@@ -8,6 +8,7 @@ WriteMakefile(
     'PREREQ_PM'		=> { 
                      'Digest::MD5' => 2.36,
 					 'LWP::UserAgent' => 5.81,
+					 'Crypt::SSLeay' => 0.57,
 				     'URI::Escape' => 1.36,
                            },
     ($] < 5.005 ? () : (
